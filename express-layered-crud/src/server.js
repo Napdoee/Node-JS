@@ -10,7 +10,7 @@ const PORT = process.env.PORT;
 app.use(express.json());
 
 app.get('/api', (req, res) => {
-	res.send("Hello World");
+  res.send("Hello World");
 });
 
 const productController = require('./product/product.controller');
@@ -18,5 +18,5 @@ const productController = require('./product/product.controller');
 app.use('/products', productController);
 
 app.listen(PORT, () => {
-	console.log(`Server running in : http://localhost:${PORT}`);
+  console.log(`Server running in : http://localhost:${PORT}`);
 });

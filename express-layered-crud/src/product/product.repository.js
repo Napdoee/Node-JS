@@ -2,73 +2,73 @@
 const prisma = require('../db');
 
 const findProducts = async () => {
-	const products = await prisma.product.findMany();
+  const products = await prisma.product.findMany();
 
-	return products;
+  return products;
 }
 
 const findProductById = async (id) => {
-	const product = await prisma.product.findUnique({
-		where: {
-			id,
-		}
-	});
+  const product = await prisma.product.findUnique({
+    where: {
+      id,
+    }
+  });
 
-	return product;
+  return product;
 }
 
-const findProductByName = async(name) => {
-	const product = await prisma.product.findFirst({
-		where: {
-			name,
-		}
-	});
+const findProductByName = async (name) => {
+  const product = await prisma.product.findFirst({
+    where: {
+      name,
+    }
+  });
 
-	return product;
+  return product;
 }
 
 const insertProduct = async (newProductData) => {
-	const product = await prisma.product.create({
-		data: {
-			name: newProductData.name,
-			price: newProductData.price,
-			description: newProductData.description,
-			image: newProductData.image,
-		}
-	});
+  const product = await prisma.product.create({
+    data: {
+      name: newProductData.name,
+      price: newProductData.price,
+      description: newProductData.description,
+      image: newProductData.image,
+    }
+  });
 
-	return product
+  return product
 }
 
-const deleteProduct = async(id) => {
-	await prisma.product.delete({
-		where: {
-			id,
-		}
-	});
+const deleteProduct = async (id) => {
+  await prisma.product.delete({
+    where: {
+      id,
+    }
+  });
 }
 
 const editProduct = async (id, productData) => {
-	const product = await prisma.product.update({
-		where: {
-			id,
-		},
-		data: {
-			name: productData.name,
-			price: productData.price,
-			description: productData.description,
-			image: productData.image,
-		}
-	});
+  const product = await prisma.product.update({
+    where: {
+      id,
+    },
+    data: {
+      name: productData.name,
+      price: productData.price,
+      description: productData.description,
+      image: productData.image,
+    }
+  });
 
-	return product;
+  return product;
 }
 
 module.exports = {
-	findProducts,
-	findProductById,
-	findProductByName,
-	insertProduct,
-	deleteProduct,
-	editProduct
+  findProducts,
+  findProductById,
+  findProductByName,
+  insertProduct,
+  deleteProduct,
+  editProduct
 }

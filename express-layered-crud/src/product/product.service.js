@@ -1,59 +1,59 @@
 //Handle business logic
-const { 
-	findProducts, 
-	findProductById, 
-	findProductByName,
-	insertProduct,
-	deleteProduct,
-	editProduct
+const {
+  findProducts,
+  findProductById,
+  findProductByName,
+  insertProduct,
+  deleteProduct,
+  editProduct
 } = require('./product.repository');
 
 const getAllProducts = async () => {
-	const products = await findProducts();
+  const products = await findProducts();
 
-	return products;
+  return products;
 }
 
 const getProductById = async (id) => {
-	const product = await findProductById(id);
+  const product = await findProductById(id);
 
-	if(!product) {
-		throw Error("Product not found");
-	}
+  if (!product) {
+    throw Error("Product not found");
+  }
 
-	return product;
+  return product;
 }
 
-const createProduct =  async (newProductData) => {
-	const findProduct = await findProductByName(newProductData.name);
+const createProduct = async (newProductData) => {
+  const findProduct = await findProductByName(newProductData.name);
 
-	if(findProduct) {
-		throw Error("name has to be unique")
-	}
+  if (findProduct) {
+    throw Error("name has to be unique")
+  }
 
-	const product = await insertProduct(newProductData)
+  const product = await insertProduct(newProductData)
 
-	return product
+  return product
 }
 
 const deleteProductById = async (id) => {
-	await getProductById(id);
+  await getProductById(id);
 
-	await deleteProduct(id);
+  await deleteProduct(id);
 }
 
 const editProductById = async (id, productData) => {
-	await getProductById(id);
+  await getProductById(id);
 
-	const product = await editProduct(id, productData);
+  const product = await editProduct(id, productData);
 
-	return product;
+  return product;
 }
 
 module.exports = {
-	getAllProducts,
-	getProductById,
-	createProduct,
-	deleteProductById,
-	editProductById
+  getAllProducts,
+  getProductById,
+  createProduct,
+  deleteProductById,
+  editProductById
 }
